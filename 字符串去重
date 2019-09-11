@@ -1,0 +1,48 @@
+using namespace std;
+ 
+int main()
+{
+    int l;
+    cin >> l;
+    vector<int> s(l);
+    for (int i = 0; i < l; i++)
+    {
+        cin >> s[i];
+    }
+    int size = s.size();
+    auto left = s.begin();
+    auto right = s.end();
+    for (int i = 1; 2 * i <= size; i++)
+        {
+            auto last = left;
+            for (auto j = left; j <= right - (2 * i); j++)
+            {
+                int mark = 1;
+                for (int k = 0; k < i; k++)
+                {
+                    if (j[k] != j[i + k])
+                    {
+                        mark = -1;
+                        j = j+k;
+                        break;
+                    }
+                }
+                if (mark == 1)
+                {
+                    last = j + i;
+                    j += i - 1;
+                }
+            }
+            left = last;
+            size = right - left;
+        }
+ 
+    cout << right - left << endl;
+    for (auto i = left; i < right; i++)
+    {
+        cout << *i << " ";
+    }
+    cout << endl;
+ 
+ 
+}
